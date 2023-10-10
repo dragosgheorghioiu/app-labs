@@ -1,18 +1,26 @@
+#include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 #define SIZE 100
 
-int main() {
-
+int main()
+{
     int a[SIZE], i;
     long sum = 0;
-    
-    for (i = 0; i < SIZE; i++) {
-        a[i] = i;
-    }
 
-    for (i = 0; i < SIZE; i++) {
+    #pragma omp parallel private(i) shared(a)
+    {
+        #pragma omp for
+        for (i = 0; i < SIZE; i++)
+        {
+            a[i] = i;
+        }
+    }
+    
+    #pragma omp parallel for private(i) shared(a) reduction(+ : sum)
+    for (i = 0; i < SIZE; i++)
+    {
         sum += a[i];
     }
 
