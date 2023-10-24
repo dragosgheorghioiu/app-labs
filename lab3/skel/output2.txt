@@ -1,0 +1,3 @@
+Type: atomic
+Time: 0.001050
+Sum: 4992041

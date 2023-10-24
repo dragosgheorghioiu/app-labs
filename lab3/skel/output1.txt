@@ -1,0 +1,3 @@
+Type: reduction
+Time: 0.000046
+Sum: 4992041
